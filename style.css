@@ -1,0 +1,371 @@
+
+/* =========================================================
+   CODELINE EATS — SHARED DESIGN SYSTEM
+   One token block + core components used across every page.
+   ========================================================= */
+
+:root {
+  /* Colour tokens */
+  --brand: #1F4E79;
+  --brand-mid: #2E75B6;
+  --brand-tint: #DEEBF7;
+  --accent: #C55A11;
+  --success: #548235;
+  --danger: #C0392B;
+  --ink: #222222;
+  --muted: #595959;
+  --surface: #FFFFFF;
+  --bg: #F4F7FB;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radius scale */
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow: 0 1px 3px rgba(0, 0, 0, .08);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, .14);
+
+  /* Type scale */
+  --fs-cap: 12px;
+  --fs-body: 14px;
+  --fs-lg: 16px;
+  --fs-h3: 20px;
+  --fs-h2: 26px;
+  --fs-h1: 34px;
+}
+
+/* ---------- Reset & base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 var(--fs-body)/1.5 'Inter', system-ui, sans-serif;
+}
+
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--brand);
+  color: #fff;
+  padding-block: var(--space-4);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.brand {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.header-search {
+  flex: 1;
+  max-width: 480px;
+}
+
+.header-location {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header-location__pin {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.icon-btn:hover { background: rgba(255, 255, 255, .28); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font: 600 var(--fs-body)/1 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: filter .15s ease, background-color .15s ease;
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn--primary:hover { filter: brightness(0.92); }
+
+.btn--primary:disabled {
+  background: #b9c4cf;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+
+.btn--ghost:hover { background: var(--brand-tint); }
+
+.btn--block { width: 100%; }
+
+/* ---------- Chips / filter pills ---------- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+}
+
+.chip {
+  border: 1px solid var(--brand-tint);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font: 600 var(--fs-body)/1 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.chip:hover { background: var(--brand-tint); }
+
+.chip--active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+/* ---------- Field / search input ---------- */
+.field {
+  width: 100%;
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px 10px 40px;
+  font: 400 var(--fs-body)/1.4 'Inter', system-ui, sans-serif;
+  background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23595959" stroke-width="2"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.2" y1="10.2" x2="15" y2="15"/></svg>') no-repeat 14px center;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--brand-mid);
+  box-shadow: 0 0 0 3px rgba(46, 117, 182, .25);
+}
+
+/* ---------- Badge ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font: 700 var(--fs-cap)/1 'Inter', system-ui, sans-serif;
+}
+
+.badge--open { background: rgba(84, 130, 53, .15); color: var(--success); }
+.badge--paused { background: rgba(89, 89, 89, .12); color: var(--muted); }
+.badge--cuisine { background: var(--brand-tint); color: var(--brand-mid); }
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s ease;
+}
+
+.card:hover { box-shadow: var(--shadow-lg); }
+
+.card--disabled { opacity: .65; }
+
+.card__media {
+  height: 140px;
+  background: linear-gradient(135deg, var(--brand-tint), var(--surface));
+  position: relative;
+}
+
+.card__media .badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+.card__body {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.card__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin: 0;
+}
+
+.card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.card__rating svg { fill: #F2B300; }
+
+.card__meta {
+  display: flex;
+  gap: var(--space-5);
+  font-size: var(--fs-cap);
+  color: var(--muted);
+}
+
+.card__meta strong {
+  display: block;
+  color: var(--ink);
+  font-size: var(--fs-body);
+}
+
+.card__footer { margin-top: auto; padding-top: var(--space-2); }
+
+/* ---------- Grid layout ---------- */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  padding-bottom: var(--space-7);
+}
+
+@media (min-width: 640px) {
+  .restaurant-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .restaurant-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- Skeleton (loading state) ---------- */
+.skeleton {
+  background: linear-gradient(90deg, #E7ECF3 25%, #F1F4F9 37%, #E7ECF3 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+.skeleton-card .card__media { background: none; }
+.skeleton-line { height: 14px; margin-bottom: var(--space-2); }
+.skeleton-line--sm { width: 60%; }
+.skeleton-line--lg { width: 90%; }
+
+/* ---------- Empty state ---------- */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-7) var(--space-4);
+  color: var(--muted);
+}
+
+.empty__icon { font-size: 40px; margin-bottom: var(--space-3); }
+
+/* ---------- Banner / toast ---------- */
+.banner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-5);
+}
+
+.banner--error {
+  background: rgba(192, 57, 43, .08);
+  border: 1px solid rgba(192, 57, 43, .25);
+  color: var(--danger);
+}
+
+.banner--info {
+  background: var(--brand-tint);
+  border: 1px solid rgba(46, 117, 182, .3);
+  color: var(--brand);
+}
+
+/* ---------- Utility ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-mid);
+  outline-offset: 2px;
+}
