@@ -1,0 +1,366 @@
+/* ==========================================================================
+   1. SPECIFICATION DESIGN TOKENS (From Token Sheet)
+   ========================================================================== */
+:root {
+  /* Colors */
+  --brand: #1F4E79;
+  --brand-mid: #2E75B6;
+  --brand-tint: #DEEBF7;
+  --accent: #C55A11;
+  --success: #548235;
+  --danger: #C0392B;
+  --ink: #222222;
+  --muted: #595959;
+  --surface: #FFFFFF;
+  --bg: #F4F7FB;
+
+  /* Typography Scales */
+  --fs-cap: 12px;
+  --fs-body: 14px;
+  --fs-lg: 16px;
+  --fs-h3: 20px;
+  --fs-h2: 26px;
+  --fs-h1: 34px;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Shapes & Shadows */
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, .08);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, .14);
+}
+
+/* ==========================================================================
+   2. REUSABLE RESET & WRAPPERS
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h3, p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================================================
+   3. SITE HEADER COMPONENT (Flex Alignment Engine)
+   ========================================================================== */
+.site-header {
+  background-color: var(--brand);
+  padding-block: var(--space-4);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.brand {
+  color: #ffffff;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header-search {
+  flex-grow: 1;
+  max-width: 460px;
+}
+
+.field {
+  width: 100%;
+  padding: 10px var(--space-3) 10px 38px;
+  font-size: var(--fs-body);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  color: var(--ink);
+  
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232E75B6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 14px center;
+  transition: box-shadow 0.2s ease;
+}
+
+.field:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-mid);
+}
+
+.header-location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: var(--fs-lg);
+  cursor: pointer;
+  color: #ffffff;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fixed: Added styling layout for the circular navigation cart interface */
+.cart-btn {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.cart-btn:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.cart-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   4. CUISINE SELECTION FILTERS (Horizontal Scroll Track)
+   ========================================================================== */
+.chip-row {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-5);
+  scrollbar-width: none;
+}
+
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  border: 1px solid #EAEAEA;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background-color: var(--brand-tint);
+  color: var(--brand);
+}
+
+.chip--active {
+  background-color: var(--brand) !important;
+  color: #ffffff !important;
+  border-color: var(--brand) !important;
+}
+
+/* ==========================================================================
+   5. RESTAURANT GRID SYSTEM & INJECTED DOM ELEMENTS
+   ========================================================================== */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.card {
+  background-color: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card__banner-stripes {
+  height: 100px;
+  width: calc(100% + (var(--space-4) * 2));
+  margin-left: calc(var(--space-4) * -1);
+  margin-top: calc(var(--space-4) * -1);
+  margin-bottom: var(--space-3);
+  position: relative;
+}
+
+.card .badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--fs-cap);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+}
+
+.badge--success { background-color: #E2F0D9; color: var(--success); }
+.badge--muted { background-color: #EAEAEA; color: var(--muted); }
+
+.stats-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.card__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.price-highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.cuisine-tag {
+  font-size: var(--fs-cap);
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.delivery-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  font-size: var(--fs-cap);
+  color: var(--muted);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid #F4F7FB;
+}
+
+.delivery-metrics div span {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--fs-body);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: var(--space-4);
+  transition: background-color 0.2s ease;
+}
+
+.btn--primary { background-color: var(--brand); color: #ffffff; }
+.btn--primary:hover { background-color: #173b5c; }
+.btn--ghost { background-color: #EAEAEA; color: var(--muted); cursor: not-allowed; }
+
+/* ==========================================================================
+   6. UI LIFECYCLE STATES (Loading, Empty, Errors)
+   ========================================================================== */
+.banner--error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FADBD8;
+  color: var(--danger);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--danger);
+  margin-bottom: var(--space-4);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #EAEAEA 25%, #F4F7FB 50%, #EAEAEA 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-6);
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   7. MOCKUP PATTERNS & THEME STATE MODIFIERS
+   ========================================================================== */
+.stripes--arabic {   background: repeating-linear-gradient(45deg, #DEEBF7, #DEEBF7 10px, #ffffff 10px, #ffffff 20px); }
+.stripes--indian {   background: repeating-linear-gradient(45deg, #FFF2CC, #FFF2CC 10px, #ffffff 10px, #ffffff 20px); }
+.stripes--italian {  background: repeating-linear-gradient(45deg, #FCE4D6, #FCE4D6 10px, #ffffff 10px, #ffffff 20px); }
+.stripes--burgers {  background: repeating-linear-gradient(45deg, #E2F0D9, #E2F0D9 10px, #ffffff 10px, #ffffff 20px); }
+.stripes--japanese { background: repeating-linear-gradient(45deg, #FADBD8, #FADBD8 10px, #ffffff 10px, #ffffff 20px); }
+.stripes--healthy {  background: repeating-linear-gradient(45deg, #D4EFDF, #D4EFDF 10px, #ffffff 10px, #ffffff 20px); }
+
+.card--paused {
+  opacity: 0.65;
+}
