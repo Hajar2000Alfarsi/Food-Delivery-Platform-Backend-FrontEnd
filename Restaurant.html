@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codeline Eats — Restaurant Browse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">🍔 Codeline Eats</div>
+
+    <div class="header-search">
+      <label for="search-input" class="visually-hidden">Search restaurants</label>
+      <input
+        id="search-input"
+        class="field"
+        type="search"
+        placeholder="Search restaurants..."
+        autocomplete="off">
+    </div>
+
+    <div class="header-location">
+      <span class="header-location__pin">📍 Al Khuwair</span>
+      <button class="icon-btn cart-btn" type="button" aria-label="View Cart">🛒</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="chip-row" id="chip-row" role="tablist" aria-label="Filter by cuisine">
+    <button class="chip chip--active" type="button" data-cuisine="All">All</button>
+    <button class="chip" type="button" data-cuisine="Arabic">Arabic</button>
+    <button class="chip" type="button" data-cuisine="Indian">Indian</button>
+    <button class="chip" type="button" data-cuisine="Italian">Italian</button>
+    <button class="chip" type="button" data-cuisine="Burgers">Burgers</button>
+    <button class="chip" type="button" data-cuisine="Japanese">Japanese</button>
+    <button class="chip" type="button" data-cuisine="Healthy">Healthy</button>
+  </div>
+
+  <section class="restaurant-grid" id="restaurant-grid" aria-live="polite">
+    </section>
+
+</main>
+
+<script src="Javascript/api.js"></script>
+<script src="Javascript/app.js"></script>
+</body>
+</html>
