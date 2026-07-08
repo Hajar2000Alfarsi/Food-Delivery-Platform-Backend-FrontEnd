@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codeline Eats — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="menustyle.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="menu-header">
+  <div class="container">
+    <button class="back-btn" type="button" onclick="history.back()" aria-label="Back to restaurants">←</button>
+    <div>
+      <p class="restaurant-info__name" id="restaurant-name">Loading…</p>
+      <p class="restaurant-info__meta" id="restaurant-meta"></p>
+    </div>
+  </div>
+</header>
+
+<main class="container menu-layout">
+
+  <!-- Left column: combos + menu list -->
+  <div class="menu-main" id="menu-main" aria-live="polite">
+    <!-- Skeleton / combos / menu items / error rendered here by menu.js -->
+  </div>
+
+  <!-- Right column: sticky cart (desktop only — hidden on mobile via CSS) -->
+  <aside class="cart-panel" data-cart-panel aria-live="polite"></aside>
+
+</main>
+
+<!-- Mobile: floating cart button -->
+<button class="cart-fab" id="cart-fab" type="button">
+  🛒 View Cart <span id="cart-fab-count">0</span>
+</button>
+
+<!-- Mobile: cart drawer (same render target, shown via CSS on small screens) -->
+<div class="cart-drawer-backdrop" id="cart-drawer-backdrop">
+  <div class="cart-panel" data-cart-panel aria-live="polite"></div>
+</div>
+
+<script src="api.js"></script>
+<script src="menu.js"></script>
+</body>
+</html>
