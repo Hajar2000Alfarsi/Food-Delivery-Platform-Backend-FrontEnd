@@ -1,6 +1,5 @@
 // api.js — single source of truth for talking to the backend
 const BASE = 'http://localhost:8080/api';
-
 async function api(path, { method='GET', body } = {}) {
  const res = await fetch(BASE + path, {
  method,
