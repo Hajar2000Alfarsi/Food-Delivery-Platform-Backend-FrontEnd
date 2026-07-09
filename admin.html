@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codeline Eats — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="container">
+
+  <div class="dashboard-header">
+     <h1><a href="index.html" class="back-btn">←</a></h1>
+    <h1>Platform Overview</h1>
+    <input type="date" id="date-picker" class="date-picker" aria-label="Select date">
+  </div>
+
+  <!-- Metric cards: orders / revenue / avg order / cancel % -->
+  <section class="metric-grid" id="metric-grid" aria-live="polite">
+    <!-- Skeleton / metric cards / error rendered here by admin.js -->
+  </section>
+
+  <!-- Busiest hours chart + top loyalty customers -->
+  <div class="panel-row">
+    <section class="panel">
+      <h2>Busiest Hours</h2>
+      <div id="busiest-hours-panel" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Top Loyalty Customers</h2>
+      <div id="loyalty-panel" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <!-- Driver leaderboard -->
+  <section class="panel" style="margin-bottom:48px;">
+    <h2>Driver Leaderboard</h2>
+    <div id="driver-panel" aria-live="polite"></div>
+  </section>
+
+</main>
+
+<!-- Chart.js — single script tag, no build step (allowed for the Dashboard) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="Javascript/api.js"></script>
+<script src="Javascript/admin.js"></script>
+</body>
+</html>
