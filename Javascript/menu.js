@@ -985,133 +985,52 @@ function refreshAfterCartChange(){
 
 
 function renderCart(){
-
   const count =
-    cart.reduce(
-      (sum,item)=>sum + item.qty,
-      0
-    );
+    cart.reduce((sum,item)=>sum + item.qty,0);
+
+  const subtotal = cart.reduce((sum,item)=> sum + (item.unitPrice * item.qty),0);
 
 
-  // حساب المجموع الفرعي
-  const subtotal = cart.reduce(
-    (sum,item)=> sum + (item.unitPrice * item.qty),
-    0
-  );
+  const deliveryFee = restaurant? Number(restaurant.deliveryFee): 0;
 
 
-  // رسوم التوصيل من بيانات المطعم
-  const deliveryFee = restaurant
-    ? Number(restaurant.deliveryFee)
-    : 0;
+  const minOrder = restaurant ? Number(restaurant.minOrderAmount): 0;
 
-
-  // الحد الأدنى للطلب
-  const minOrder = restaurant
-    ? Number(restaurant.minOrderAmount)
-    : 0;
-
-
-  // المجموع النهائي
   const total = subtotal + (cart.length ? deliveryFee : 0);
 
-
-  // هل وصلنا للحد الأدنى؟
   const minimumReached = subtotal >= minOrder;
 
-
-
   cartPanels.forEach(panel=>{
-
     panel.innerHTML = `
-
-
     <div class="cart-panel__header">
-
       🛒 Your Cart
-
       <span class="cart-panel__count">
-
         ${count}
-
       </span>
-
     </div>
-
-
-
-
     ${
-      cart.length
-
-      ?
-
-      cart.map(item=>`
-
-      <div class="cart-line">
-
-
+      cart.length ? cart.map(item=>`
+        <div class="cart-line">
         <div>
-
           <div class="cart-line__name">
-
             ${escapeHtml(item.name)}
             x ${item.qty}
-
           </div>
-
-
           <div class="cart-line__unit">
-
             ${formatOmr(item.unitPrice)} OMR each
-
           </div>
-
-
         </div>
-
-
-
         <div class="cart-line__amount">
-
           ${formatOmr(item.unitPrice * item.qty)}
-
         </div>
-
-
-      </div>
-
-
-      `).join('')
-
-
-
-      :
-
-
-      `
-
-      <div class="cart-empty">
-
+      </div>`).join('')
+      : 
+      `<div class="cart-empty">
         Your cart is empty
-
-      </div>
-
-      `
-
-    }
-
-
-
-
-
-    <!-- Total Section -->
+      </div>`}
 
     <div class="cart-totals">
-
-
       <div class="cart-totals__row">
-
         <span>
           Subtotal
         </span>
@@ -1121,9 +1040,6 @@ function renderCart(){
         </span>
 
       </div>
-
-
-
 
       <div class="cart-totals__row">
 
@@ -1135,128 +1051,95 @@ function renderCart(){
           ${formatOmr(cart.length ? deliveryFee : 0)} OMR
         </span>
 
-
       </div>
 
-
-
-
-
       <div class="cart-totals__row cart-totals__row--total">
-
 
         <span>
           Total
         </span>
 
-
         <span>
           ${formatOmr(total)} OMR
         </span>
 
-
       </div>
-
 
     </div>
 
-
-
-
-
-
-    <!-- Place Order Button -->
-
-
     <button
-
       class="btn btn--primary btn--block"
-
       id="place-order-btn"
-
-
-      ${
-        cart.length === 0 || !minimumReached
-
-        ?
-
-        'disabled'
-
-        :
-
-        ''
-
-      }
-
-
-    >
-
+      ${cart.length === 0 || !minimumReached ? 'disabled' : ''}>
       Place Order
-
     </button>
 
-
-
-
-
-    <!-- Minimum Order Message -->
-
-
     <p class="cart-note
-      ${
-        minimumReached
+      ${minimumReached ? 'cart-note--ok' : 'cart-note--pending'}">
 
-        ?
-
-        'cart-note--ok'
-
-        :
-
-        'cart-note--pending'
-
+      ${cart.length === 0 ? 
+        `Minimum order ${formatOmr(minOrder)} OMR` : minimumReached
+        ? `Minimum order reached ✓` :
+        `Add ${formatOmr(minOrder - subtotal)} OMR more to reach minimum order`
       }
-    ">
+    </p>`;
+  });
+  cartFabCount.textContent = count;
+
+  // ================================
+  // Place Order Button Interaction
+  // ================================
+
+  const placeOrderBtn = document.getElementById(
+    "place-order-btn"
+  );
 
 
-    ${
-      cart.length === 0
-
-      ?
-
-      `Minimum order ${formatOmr(minOrder)} OMR`
+  if(placeOrderBtn){
 
 
-      :
+    placeOrderBtn.addEventListener(
+  "click",
+  async ()=>{
+
+    try {
+
+      const orderItems = cart.map(item => ({
+        menuItemId: Number(item.menuItemId),
+        quantity: item.qty
+      }));
 
 
-      minimumReached
+      const order = await api(
+        `/orders/customer/${CUSTOMER_ID}/restaurant/${RESTAURANT_ID}`,
+        {
+          method:"POST",
+          body: orderItems
+        }
+      );
 
 
-      ?
-
-      `Minimum order reached ✓`
+      console.log(order);
 
 
-      :
+      window.location.href =
+      `track.html?orderId=${order.id}`;
 
 
-      `Add ${formatOmr(minOrder - subtotal)} OMR more to reach minimum order`
+    }
+    catch(error){
+
+      console.log(error.message);
+
+      alert("Order creation failed");
 
     }
 
-
-    </p>
-
-
-
-    `;
+  }
+);
 
 
-  });
-
-
-
-  cartFabCount.textContent = count;
+  }
 
 
 }

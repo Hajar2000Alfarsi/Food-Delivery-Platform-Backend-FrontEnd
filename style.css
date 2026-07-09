@@ -772,3 +772,523 @@ a { color: inherit; text-decoration: none; }
     color: var(--muted);
   }
 }
+
+
+
+/* =========================================================
+   PAGE 3 — ORDER TRACKING
+   ========================================================= */
+/* ==========================================
+TRACK HEADER
+========================================== */
+
+.track-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:35px 0 45px;
+
+}
+
+.track-header h1{
+
+font-size:34px;
+margin-top:8px;
+color:var(--ink);
+
+}
+
+/* ==========================================
+ETA CARD
+========================================== */
+
+.eta-box{
+
+background:var(--brand-tint);
+
+padding:18px 30px;
+
+border-radius:12px;
+
+min-width:180px;
+
+text-align:center;
+
+box-shadow:var(--shadow);
+
+}
+
+.eta-box small{
+
+display:block;
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:var(--muted);
+
+margin-bottom:8px;
+
+}
+
+.eta-box h2{
+
+font-size:42px;
+
+color:var(--brand);
+
+}
+
+/* ==========================================
+TIMELINE
+========================================== */
+
+.timeline{
+
+display:flex;
+
+align-items:flex-start;
+
+justify-content:center;
+
+margin-bottom:45px;
+
+}
+
+.timeline__step{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+min-width:120px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.timeline__circle{
+
+width:30px;
+
+height:30px;
+
+border-radius:50%;
+
+background:white;
+
+border:4px solid #CFD8E3;
+
+transition:.3s;
+
+}
+
+.timeline__step span{
+
+margin-top:12px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:var(--muted);
+
+}
+
+.timeline__line{
+
+height:4px;
+
+background:#D7DEE8;
+
+flex:1;
+
+margin-top:13px;
+
+}
+
+/* الحالة الحالية */
+
+.timeline__step.active .timeline__circle{
+
+border-color:var(--brand);
+
+background:white;
+
+box-shadow:0 0 0 6px rgba(31,78,121,.12);
+
+animation:pulse 1.3s infinite;
+
+}
+
+.timeline__step.active span{
+
+color:var(--brand);
+
+}
+
+/* الحالة المكتملة */
+
+.timeline__step.done .timeline__circle{
+
+background:var(--brand);
+
+border-color:var(--brand);
+
+}
+
+.timeline__step.done + .timeline__line{
+
+background:var(--brand);
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.1);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ==========================================
+MAIN CARD
+========================================== */
+
+.tracking-card{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+background:white;
+
+border-radius:14px;
+
+overflow:hidden;
+
+box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+ITEMS
+========================================== */
+
+.tracking-card__items{
+
+padding:35px;
+
+border-right:1px solid #ECECEC;
+
+}
+
+.tracking-card__items h2{
+
+margin-bottom:28px;
+
+}
+
+#items{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.item{
+
+display:grid;
+
+grid-template-columns:1fr auto;
+
+align-items:center;
+
+font-size:16px;
+
+padding-bottom:12px;
+
+border-bottom:1px dashed #ECECEC;
+
+}
+
+.item__name{
+
+font-weight:600;
+
+}
+
+.item__price{
+
+color:var(--accent);
+
+font-weight:bold;
+
+}
+
+.total-box{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-top:30px;
+
+padding-top:22px;
+
+border-top:2px solid #ECECEC;
+
+font-size:24px;
+
+font-weight:bold;
+
+}
+
+.total-box strong{
+
+color:var(--accent);
+
+}
+
+/* ==========================================
+DRIVER
+========================================== */
+
+.tracking-card__driver{
+
+padding:35px;
+
+}
+
+.driver{
+
+display:flex;
+
+align-items:center;
+
+gap:16px;
+
+margin:25px 0;
+
+}
+
+.driver__avatar{
+
+width:62px;
+
+height:62px;
+
+border-radius:50%;
+
+background:var(--brand-tint);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+}
+
+.driver h3{
+
+font-size:20px;
+
+margin-bottom:5px;
+
+}
+
+.driver small{
+
+color:var(--muted);
+
+}
+
+.driver-status{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+/* ==========================================
+CUSTOMER
+========================================== */
+
+.tracking-card__driver h3{
+
+margin-top:20px;
+
+margin-bottom:8px;
+
+}
+
+.tracking-card__driver p{
+
+margin-bottom:20px;
+
+color:var(--muted);
+
+}
+
+/* ==========================================
+TIMELINE HISTORY
+========================================== */
+
+#history{
+
+margin-top:20px;
+
+list-style:none;
+
+}
+
+#history li{
+
+padding:14px 0;
+
+border-bottom:1px solid #EEEEEE;
+
+position:relative;
+
+padding-left:24px;
+
+}
+
+#history li::before{
+
+content:"";
+
+width:10px;
+
+height:10px;
+
+background:var(--brand);
+
+border-radius:50%;
+
+position:absolute;
+
+left:0;
+
+top:20px;
+
+}
+
+/* ==========================================
+MOBILE
+========================================== */
+
+@media(max-width:900px){
+
+.track-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.eta-box{
+
+width:100%;
+
+}
+
+.tracking-card{
+
+grid-template-columns:1fr;
+
+}
+
+.tracking-card__items{
+
+border-right:none;
+
+border-bottom:1px solid #ECECEC;
+
+}
+
+.timeline{
+
+overflow-x:auto;
+
+justify-content:flex-start;
+
+padding-bottom:15px;
+
+}
+
+.timeline__step{
+
+min-width:90px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.track-header h1{
+
+font-size:26px;
+
+}
+
+.eta-box h2{
+
+font-size:34px;
+
+}
+
+.total-box{
+
+font-size:20px;
+
+}
+
+.driver{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+}
