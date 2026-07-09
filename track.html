@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Tracking</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container header__content">
+
+<h2 class="logo">🍔 Codeline Eats</h2>
+
+
+
+</div>
+
+</header>
+
+<main class="container">
+
+<section id="loading" class="loading hidden">
+
+<div class="spinner"></div>
+
+<p>Loading your order...</p>
+
+</section>
+
+<section id="error" class="banner banner--error hidden"></section>
+
+<section id="trackingPage" class="hidden">
+
+<!-- Top -->
+
+<section class="track-header">
+
+<div>
+
+<span class="caption" id="orderCode">
+ORDER
+</span>
+
+<h1 id="restaurantName">
+Restaurant
+</h1>
+
+</div>
+
+<div class="eta-box">
+
+<small>ARRIVING IN</small>
+
+<h2 id="eta">15:00</h2>
+
+</div>
+
+</section>
+
+<!-- Progress -->
+
+<section class="timeline">
+
+<div class="timeline__step" id="PENDING">
+<div class="timeline__circle"></div>
+<span>PENDING</span>
+</div>
+
+<div class="timeline__line"></div>
+
+<div class="timeline__step" id="PREPARING">
+<div class="timeline__circle"></div>
+<span>PREPARING</span>
+</div>
+
+<div class="timeline__line"></div>
+
+<div class="timeline__step" id="READY">
+<div class="timeline__circle"></div>
+<span>READY</span>
+</div>
+
+<div class="timeline__line"></div>
+
+<div class="timeline__step" id="DELIVERED">
+<div class="timeline__circle"></div>
+<span>DELIVERED</span>
+</div>
+
+</section>
+
+<!-- Main Card -->
+
+<section class="tracking-card">
+
+<!-- Items -->
+
+<div class="tracking-card__items">
+
+<h2>Order Items</h2>
+
+<div id="items"></div>
+
+<div class="total-box">
+
+<span>Total</span>
+
+<strong id="total"></strong>
+
+</div>
+
+</div>
+
+<!-- Driver -->
+
+<div class="tracking-card__driver">
+
+<h2>Driver</h2>
+
+<div class="driver">
+
+<div class="driver__avatar">
+🚗
+</div>
+
+<div>
+
+<h3 id="driverName">
+Driver will be assigned
+</h3>
+
+<small id="driverCode">
+Waiting...
+</small>
+
+</div>
+
+</div>
+
+<div class="driver-status">
+
+<span>Status</span>
+
+<span class="badge" id="driverStatus">
+Pending
+</span>
+
+</div>
+
+<hr>
+
+<h3>Customer</h3>
+
+<p id="customer"></p>
+
+<h3>Restaurant</h3>
+
+<p id="restaurant"></p>
+
+</div>
+
+</section>
+
+<!-- Timeline History -->
+
+<section class="card">
+
+<h2>Order Timeline</h2>
+
+<ul id="history"></ul>
+
+</section>
+
+</section>
+
+</main>
+
+<script src="Javascript/api.js"></script>
+<script src="Javascript/track.js"></script>
+
+</body>
+
+</html>
